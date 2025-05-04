@@ -4,7 +4,7 @@
 
 #### 原則
 
-- W3C標準準拠: W3C勧告に沿った、有効なHTMLコードを記述すること。
+- W3C 標準準拠: W3C 勧告に沿った、有効な HTML コードを記述すること。
 - セマンティクス: 要素の持つ意味を正しく理解し、適切なセマンティック要素を選択・使用すること。意味を持たない、あるいは内容の伴わない冗長な `div` 要素などの使用は避ける。
 - アクセシビリティ: スクリーンリーダー利用者やキーボード操作者を含む全てのユーザーがコンテンツを利用できるよう、代替テキスト (`alt`) の指定、フォームコントロールとラベルの関連付け、適切な見出し構造など、基本的なアクセシビリティ要件を満たすこと。
 - パフォーマンス: 不必要な要素やマークアップを避け、画像の最適化や遅延ロード (`loading="lazy"`) の活用など、読み込み速度の向上に配慮すること。
@@ -19,17 +19,16 @@
 
 以下のいずれかの方法を採用し、プロジェクト全体で統一します。
 
-- SCSS + BEM記法: CSSプリプロセッサとしてSCSSを使用し、クラス命名規則にはBEM (Block, Element, Modifier) を採用します。
-- Tailwind CSS: ユーティリティファーストのCSSフレームワークであるTailwind CSSを使用します。
+- SCSS + BEM 記法: CSS プリプロセッサとして SCSS を使用し、クラス命名規則には BEM (Block, Element, Modifier) を採用します。
+- Tailwind CSS: ユーティリティファーストの CSS フレームワークである Tailwind CSS を使用します。
 
 ### 共通原則
 
 SCSS/BEM または Tailwind CSS のどちらを使用する場合でも、以下の原則を遵守します。
 
-
 #### 1. デザイントークンの定義と利用
 
-- 色、フォントサイズ、間隔、ブレークポイントなどのデザイントークンを定義し、CSS内で直接値をハードコーディングするのではなく、変数や設定ファイル経由で利用します。
+- 色、フォントサイズ、間隔、ブレークポイントなどのデザイントークンを定義し、CSS 内で直接値をハードコーディングするのではなく、変数や設定ファイル経由で利用します。
 - これにより、デザインの一貫性を保ち、後からの変更管理を容易にします。
 
 ##### Tailwind
@@ -37,19 +36,21 @@ SCSS/BEM または Tailwind CSS のどちらを使用する場合でも、以下
 ```js
 module.exports = {
   theme: {
-    extend: { // 既存のテーマを拡張する場合
+    extend: {
+      // 既存のテーマを拡張する場合
       colors: {
-        'primary': 'oklch(45% 0.2 270)', // カスタムカラー 'primary' を定義
-        'secondary': '#ff4500',
+        primary: 'oklch(45% 0.2 270)', // カスタムカラー 'primary' を定義
+        secondary: '#ff4500',
         // 他のデザイントークン（spacing, fontSizeなども同様に定義）
-      }
-    }
-  }
+      },
+    },
+  },
   // ...その他の設定
-}
+};
 ```
+
 ```jsx
-<button className="bg-primary">button</button>
+<button className='bg-primary'>button</button>
 ```
 
 ##### SCSS
@@ -67,8 +68,8 @@ $color-primary: oklch(45% 0.2 270);
 
 #### 2. 再利用可能なスタイルパターンのコンポーネント化。
 
-- 頻繁に繰り返し出現するスタイルの組み合わせを持つHTML要素は、再利用可能なコンポーネントとして抽象化し、カプセル化することを推奨します。
-- これにより、コードの重複を減らし、保守性を大幅に向上させます。特にTailwind CSSを使用する場合、多くのユーティリティクラスが要素に直接記述されることを避けるために重要です。
+- 頻繁に繰り返し出現するスタイルの組み合わせを持つ HTML 要素は、再利用可能なコンポーネントとして抽象化し、カプセル化することを推奨します。
+- これにより、コードの重複を減らし、保守性を大幅に向上させます。特に Tailwind CSS を使用する場合、多くのユーティリティクラスが要素に直接記述されることを避けるために重要です。
 
 ```jsx
 // Tailwindクラスが多数定義されている再利用可能なボタン
@@ -85,19 +86,20 @@ Custom Button
 #### 3. スタイルの管理方針
 
 - Tailwind
+
   - ユーティリティクラスの使用を基本とします。
-  - ただし、多くのユーティリティクラスの組み合わせになる場合は、そのスタイルパターンをコンポーネントに集約するか、@apply ディレクティブを使用してカスタムCSSクラスに抽出することを検討します。要素のHTMLがユーティリティクラスで過度に埋め尽くされるのを避けるためです。
+  - ただし、多くのユーティリティクラスの組み合わせになる場合は、そのスタイルパターンをコンポーネントに集約するか、@apply ディレクティブを使用してカスタム CSS クラスに抽出することを検討します。要素の HTML がユーティリティクラスで過度に埋め尽くされるのを避けるためです。
 
 - SCSS + BEM
-  - BEM命名規則 (block__element--modifier) に厳密に従い、クラス名から要素の役割や状態が推測できるようにします。
-  - 単一のCSSプロパティのためだけの汎用的なユーティリティクラス（例: .mt-10, .text-bold など）の乱用は避け、BEMの要素やモディファイア、またはベーススタイルの中でスタイルを定義することを基本とします。
+  - BEM 命名規則 (block\_\_element--modifier) に厳密に従い、クラス名から要素の役割や状態が推測できるようにします。
+  - 単一の CSS プロパティのためだけの汎用的なユーティリティクラス（例: .mt-10, .text-bold など）の乱用は避け、BEM の要素やモディファイア、またはベーススタイルの中でスタイルを定義することを基本とします。
 
 ---
 
-#### 4. SCSS使用時の追加原則
+#### 4. SCSS 使用時の追加原則
 
 - ネストの制限
-  - SCSSのネスト機能は、親セレクタに対する擬似クラス (`&:hover`, `&:focus`) や状態クラス (`&.is-active`) のスタイルを記述する場合など、必要不可欠な場面に限定して使用します。
+  - SCSS のネスト機能は、親セレクタに対する擬似クラス (`&:hover`, `&:focus`) や状態クラス (`&.is-active`) のスタイルを記述する場合など、必要不可欠な場面に限定して使用します。
   - 要素の構造を表すための過度なネストは避けてください。深いネストはセレクタの特異度を不必要に高め、コードの可読性、検索性、および保守性を著しく低下させます。
 
 ```scss
@@ -111,7 +113,7 @@ Custom Button
 // OK
 .hoge__title {
   color: black;
-}  
+}
 ```
 
 #### 準拠確認
@@ -133,19 +135,13 @@ Custom Button
 
 #### 対応例
 
-- ツールとして、Node.jsライブラリである `sharp` や、使用しているフレームワーク（Next.jsのImageコンポーネントなど）が提供する画像最適化機能の利用を推奨します。
-- 可能であれば、高い圧縮率と品質を持つ AVIF形式 を基本とし、AVIFをサポートしていないブラウザ向けに WebP形式 をフォールバックとして提供することを推奨します。
+- ツールとして、Node.js ライブラリである `sharp` や、使用しているフレームワーク（Next.js の Image コンポーネントなど）が提供する画像最適化機能の利用を推奨します。
+- 可能であれば、高い圧縮率と品質を持つ AVIF 形式 を基本とし、AVIF をサポートしていないブラウザ向けに WebP 形式 をフォールバックとして提供することを推奨します。
+
 ```html
 <picture>
   <source srcset="/images/hoge.avif" type="image/avif" />
-  <img
-    src="/images/hoge.webp"
-    width="1600"
-    height="1200"
-    alt=""
-    loading="lazy"
-    decoding="async"
-  />
+  <img src="/images/hoge.webp" width="1600" height="1200" alt="" loading="lazy" decoding="async" />
 </picture>
 ```
 
@@ -170,7 +166,7 @@ Custom Button
 
 #### 理由
 
-画面外で要素が動き続けたり、イベント監視が行われたりすると、ユーザーに見えない部分で不要なCPUリソースを消費し、ページのパフォーマンス低下につながる可能性があるためです。
+画面外で要素が動き続けたり、イベント監視が行われたりすると、ユーザーに見えない部分で不要な CPU リソースを消費し、ページのパフォーマンス低下につながる可能性があるためです。
 
 #### 対応方法
 
@@ -187,11 +183,10 @@ const io = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       // 要素が画面に入った場合
-      target.classList.add("is-loop"); // アニメーションを開始するクラスを追加
-    }
-    else {
+      target.classList.add('is-loop'); // アニメーションを開始するクラスを追加
+    } else {
       // 要素が画面から出た場合
-      target.classList.remove("is-loop"); // アニメーションを停止するクラスを削除
+      target.classList.remove('is-loop'); // アニメーションを停止するクラスを削除
     }
   });
 });
@@ -211,23 +206,22 @@ const target = document.querySelector('.js-hoge') as HTMLElement;
  * @description スクロール時に実行する処理
  */
 const onScroll = (): void => {
-    // ここにスクロールイベントで実行したい処理を記述...
-    console.log("Scrolling inside target element");
-}
+  // ここにスクロールイベントで実行したい処理を記述...
+  console.log('Scrolling inside target element');
+};
 
 const io = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       // 要素が画面に入った場合
       // スクロールイベントリスナーを追加
-      target.addEventListener("scroll", onScroll);
-      console.log("Scroll listener added");
-    }
-    else {
+      target.addEventListener('scroll', onScroll);
+      console.log('Scroll listener added');
+    } else {
       // 要素が画面から出た場合
       // スクロールイベントリスナーを削除
-      target.removeEventListener("scroll", onScroll);
-      console.log("Scroll listener removed");
+      target.removeEventListener('scroll', onScroll);
+      console.log('Scroll listener removed');
     }
   });
 });
@@ -246,7 +240,7 @@ io.observe(target);
 
 #### 対応方法
 
-ホバー操作が可能なデバイスにのみホバー時のスタイルを適用するために、CSSの `@media (any-hover: hover)` メディアクエリを使用します。
+ホバー操作が可能なデバイスにのみホバー時のスタイルを適用するために、CSS の `@media (any-hover: hover)` メディアクエリを使用します。
 
 #### 実装例
 
@@ -262,15 +256,15 @@ io.observe(target);
 
 ---
 
-### 3. 狭小スクリーン（375px未満）におけるビューポートの固定
+### 3. 狭小スクリーン（375px 未満）におけるビューポートの固定
 
 #### 目的
 
-画面幅が非常に狭小な端末（例: 375px未満）に対するきめ細やかなレスポンシブ対応は、実装コストが増大する傾向があります。そのため、特定のブレークポイント未満の画面幅ではビューポートの表示幅を固定することで、対応範囲を限定し開発効率を高めます。
+画面幅が非常に狭小な端末（例: 375px 未満）に対するきめ細やかなレスポンシブ対応は、実装コストが増大する傾向があります。そのため、特定のブレークポイント未満の画面幅ではビューポートの表示幅を固定することで、対応範囲を限定し開発効率を高めます。
 
 #### 対応方法
 
-JavaScriptを用いて、`window.outerWidth` が特定の幅（例: 375px）を下回る場合に、ビューポートの `content` プロパティを固定値（例: `"width=375"`）に書き換えます。
+JavaScript を用いて、`window.outerWidth` が特定の幅（例: 375px）を下回る場合に、ビューポートの `content` プロパティを固定値（例: `"width=375"`）に書き換えます。
 
 #### 実装例
 
@@ -286,11 +280,11 @@ export const viewportFix = (): void => {
   const outerWidth = window.outerWidth;
 
   // 375pxより大きい場合は通常のレスポンシブ設定、そうでなければ375pxに固定
-  const value = outerWidth > 375 ? "width=device-width,initial-scale=1" : "width=375";
+  const value = outerWidth > 375 ? 'width=device-width,initial-scale=1' : 'width=375';
 
   // 現在のviewport設定と異なる場合のみ更新
-  if (viewport?.getAttribute("content") !== value) {
-    viewport?.setAttribute("content", value);
+  if (viewport?.getAttribute('content') !== value) {
+    viewport?.setAttribute('content', value);
     console.log(`Viewport set to: ${value}`); // 確認用ログ
   }
 };
