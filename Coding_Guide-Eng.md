@@ -6,8 +6,10 @@
 
 - W3C Standards Compliance: Write valid HTML code that follows W3C recommendations.
 - Semantics: Correctly understand the meaning of elements and choose/use appropriate semantic elements. Avoid using redundant `div` elements that lack meaning or content.
-- Accessibility: Ensure content is accessible to all users, including screen reader users and keyboard operators, by meeting basic accessibility requirements such as providing alternative text (`alt`), associating form controls with labels, and creating appropriate heading structures. Also check out [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/)
+- Accessibility: Ensure content is accessible to all users, including screen reader users and keyboard operators, by meeting basic accessibility requirements such as providing alternative text (`alt`), associating form controls with labels, and creating appropriate heading structures, Include ARIA landmarks when necessary. Also check out [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/) and [ A11Y project](https://www.a11yproject.com)
 - Performance: Avoid unnecessary elements and markup, optimize images, and utilize lazy loading (`loading="lazy"`) to improve loading speed.
+
+- The best way to make your website accessible is to actually use your website as different people in your audience would — test it out using a screen reader, try only using a keyboard instead of a mouse etc..
 
 #### Compliance Verification
 
@@ -135,7 +137,7 @@ Always compress and optimize image assets managed and delivered within the proje
 
 #### Implementation Examples
 
-- Recommended tools include Node.js library `sharp` or image optimization features provided by the framework you're using (such as Next.js's Image component).
+- Recommended tools include Node.js library `sharp`, webistes like `ImageOptim`, `TinyPNG`, `Squoosh` or image optimization features provided by the framework you're using (such as Next.js's Image component).
 - When possible, it's recommended to use AVIF format as the base due to its high compression ratio and quality, with WebP format as a fallback for browsers that don't support AVIF.
 
 ```html
@@ -143,6 +145,16 @@ Always compress and optimize image assets managed and delivered within the proje
   <source srcset="/images/hoge.avif" type="image/avif" />
   <img src="/images/hoge.webp" width="1600" height="1200" alt="" loading="lazy" decoding="async" />
 </picture>
+
+<!-- Example: Responsive Images with Picture: -->
+<picture>
+  <source srcset="images/high-res.avif" type="image/avif" media="(min-width: 1200px)" />
+  <source srcset="images/medium-res.webp" type="image/webp" media="(min-width: 800px)" />
+  <img src="images/low-res.jpg" alt="Beautiful Landscape" loading="lazy" decoding="async" />
+</picture>
+
+<!-- Example: Responsive Images with img: -->
+<img class="img-fluid" src="microsoft-logo-small.png" srcset="microsoft-logo-medium.png 1000w, microsoft-logo-large.png 2000w" alt="microsoft logo" />
 ```
 
 ### Videos
