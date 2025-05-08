@@ -6,7 +6,7 @@
 
 - W3C Standards Compliance: Write valid HTML code that follows W3C recommendations.
 - Semantics: Correctly understand the meaning of elements and choose/use appropriate semantic elements. Avoid using redundant `div` elements that lack meaning or content.
-- Accessibility: Ensure content is accessible to all users, including screen reader users and keyboard operators, by meeting basic accessibility requirements such as providing alternative text (`alt`), associating form controls with labels, and creating appropriate heading structures.
+- Accessibility: Ensure content is accessible to all users, including screen reader users and keyboard operators, by meeting basic accessibility requirements such as providing alternative text (`alt`), associating form controls with labels, and creating appropriate heading structures. Also check out [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/)
 - Performance: Avoid unnecessary elements and markup, optimize images, and utilize lazy loading (`loading="lazy"`) to improve loading speed.
 
 #### Compliance Verification
