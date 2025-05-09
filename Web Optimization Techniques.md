@@ -13,6 +13,25 @@
   ```
 - **Why:** Saves bandwidth on smaller devices by loading lower-resolution images.
 
+### a1. Resolution Switching
+
+- Use `srcset` attributes to specify different resolutions.
+- Example:
+  ```html
+  <img srcset="elva-fairy-320w.jpg, elva-fairy-480w.jpg 1.5x, elva-fairy-640w.jpg 2x" src="elva-fairy-640w.jpg" alt="Elva dressed as a fairy" />
+  ```
+- **Why:** Ensures the best image quality for different screen resolutions.
+- **Note:** Use `sizes` attribute to specify the display size of the image in CSS pixels.
+  ```html
+  <img
+    srcset="elva-fairy-480w.jpg 480w, elva-fairy-800w.jpg 800w"
+    sizes="(max-width: 600px) 480px,
+           800px"
+    src="elva-fairy-800w.jpg"
+    alt="Elva dressed as a fairy" />
+  ```
+- **Why:** Helps the browser choose the best image size based on the viewport.
+
 ### b. Image Compression
 
 - Use tools like **ImageOptim**, **TinyPNG**, **Squoosh**, **Sharp** to reduce image file size without losing quality.

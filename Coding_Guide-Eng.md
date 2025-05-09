@@ -155,6 +155,13 @@ Always compress and optimize image assets managed and delivered within the proje
 
 <!-- Example: Responsive Images with img: -->
 <img class="img-fluid" src="microsoft-logo-small.png" srcset="microsoft-logo-medium.png 1000w, microsoft-logo-large.png 2000w" alt="microsoft logo" />
+
+<img
+  srcset="elva-fairy-480w.jpg 480w, elva-fairy-800w.jpg 800w"
+  sizes="(max-width: 600px) 480px,
+         800px"
+  src="elva-fairy-800w.jpg"
+  alt="Elva dressed as a fairy" />
 ```
 
 ### Videos
